@@ -1,0 +1,68 @@
+// Main container for the platform
+document.body.innerHTML = `
+  <div id="app">
+    <nav id="navigation" class="navigation"></nav>
+    <div id="content" class="content"></div>
+  </div>
+`;
+
+// Data for sections
+const sections = {
+  overview: "The Leadership Revolution",
+  selfrich: "self-RICH",
+  bfree: "B-FREE",
+  practice: "Daily Practices",
+  impact: "Measurable Impact",
+};
+
+// Current active section
+let activeSection = "overview";
+
+// Initialize navigation menu
+const navigation = document.getElementById("navigation");
+Object.keys(sections).forEach((key) => {
+  const button = document.createElement("button");
+  button.textContent = sections[key];
+  button.className = "nav-button";
+  button.onclick = () => renderSection(key);
+  navigation.appendChild(button);
+});
+
+// Content placeholder
+const content = document.getElementById("content");
+
+// Render Section
+function renderSection(sectionKey) {
+  activeSection = sectionKey;
+  content.innerHTML = ""; // Clear current content
+
+  if (sectionKey === "overview") {
+    content.innerHTML = `
+      <h1>${sections[sectionKey]}</h1>
+      <p>Welcome to the leadership revolution. Explore the journey to authentic leadership.</p>
+    `;
+  } else if (sectionKey === "selfrich") {
+    content.innerHTML = `
+      <h1>${sections[sectionKey]}</h1>
+      <p>Learn to build inner wealth through the self-RICH method.</p>
+    `;
+  } else if (sectionKey === "bfree") {
+    content.innerHTML = `
+      <h1>${sections[sectionKey]}</h1>
+      <p>Discover how to create environments where potential flourishes naturally.</p>
+    `;
+  } else if (sectionKey === "practice") {
+    content.innerHTML = `
+      <h1>${sections[sectionKey]}</h1>
+      <p>Explore daily practices to transform your presence and leadership.</p>
+    `;
+  } else if (sectionKey === "impact") {
+    content.innerHTML = `
+      <h1>${sections[sectionKey]}</h1>
+      <p>Learn how to create measurable, lasting impact as a leader.</p>
+    `;
+  }
+}
+
+// Initial render
+renderSection(activeSection);
